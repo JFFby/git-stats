@@ -6,6 +6,7 @@ namespace Command.Infrastructure
 {
     public class CommandHandler
     {
+        private const  string NotRecognizedCommand = "command was not recognized.";
         private readonly ICommandController controller;
 
         public CommandHandler(ICommandController controller)
@@ -16,6 +17,12 @@ namespace Command.Infrastructure
         public string Execute(string command)
         {
             var executedCommand = CreateCommand(command);
+
+            if (executedCommand == null)
+            {
+                return NotRecognizedCommand;
+            }
+
             return Call(executedCommand);
         }
 
@@ -24,7 +31,7 @@ namespace Command.Infrastructure
             var handler = TryGetHandler(command.ExecutedCommand);
             if (handler == null)
             {
-                return "command was not recognized.";
+                return NotRecognizedCommand;
             }
 
             return (string) handler.Invoke(controller, new object[] {command});
@@ -39,11 +46,19 @@ namespace Command.Infrastructure
 
         private Models.Command CreateCommand(string command)
         {
-            command = command.Trim();
-            var spaceIndex = command.IndexOf(" ", StringComparison.InvariantCulture);
-            var executedCommand = command.Substring(0, spaceIndex);
-            var args = command.Substring(spaceIndex, command.Length - spaceIndex);
-            return new Models.Command(executedCommand.Trim(), args.Trim());
+            try
+            {
+                command = command.Trim();
+                var spaceIndex = command.IndexOf(" ", StringComparison.InvariantCulture);
+                var executedCommand = command.Substring(0, spaceIndex);
+                var args = command.Substring(spaceIndex, command.Length - spaceIndex);
+                return new Models.Command(executedCommand.Trim(), args.Trim());
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
     }
 }
