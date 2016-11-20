@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Stats", "Git.Stats\Git.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Stats.Console", "Git.Stats.Console\Git.Stats.Console.csproj", "{D546F98D-FBA7-48FC-9595-934A88715A16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command.Infrastructure", "Command.Infrastructure\Command.Infrastructure.csproj", "{42FABD97-6833-4936-9A5E-989AE572C9CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D546F98D-FBA7-48FC-9595-934A88715A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D546F98D-FBA7-48FC-9595-934A88715A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D546F98D-FBA7-48FC-9595-934A88715A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42FABD97-6833-4936-9A5E-989AE572C9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42FABD97-6833-4936-9A5E-989AE572C9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42FABD97-6833-4936-9A5E-989AE572C9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42FABD97-6833-4936-9A5E-989AE572C9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
