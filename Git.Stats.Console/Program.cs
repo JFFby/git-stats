@@ -1,4 +1,5 @@
 ﻿using System;
+using Git.Stats.Container;
 using Git.Stats.Infrastructure;
 
 namespace Git.Stats.Console
@@ -7,7 +8,7 @@ namespace Git.Stats.Console
     {
         static void Main(string[] args)
         {
-            var handler = GitStatsFactory.ResolveHandler();
+            var handler = Ioc.Resolve<GetStatsCommandHandler>();
             var nl = Environment.NewLine;
 
             do

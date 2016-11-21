@@ -1,8 +1,9 @@
-﻿using Git.Stats.Models.Statistics;
+﻿using Git.Stats.Infrastructure.Services.Implementations;
+using Git.Stats.Models.Statistics;
 
 namespace Git.Stats.Report
 {
-    public interface IReportBuilder
+    public interface IReportBuilder : IService
     {
         string BuildReport(Statistic statistic);
     }

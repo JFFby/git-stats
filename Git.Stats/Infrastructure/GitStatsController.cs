@@ -1,20 +1,21 @@
 ﻿using Command.Infrastructure;
+using Git.Stats.Infrastructure.Services.Interfaces;
 using _Command = Command.Infrastructure.Models.Command;
 
 namespace Git.Stats.Infrastructure
 {
     public sealed class GitStatsController : ICommandController
     {
-        private readonly GitStatisticService cdService;
+        private readonly IGitStatisticService statisticService;
 
-        public GitStatsController()
+        public GitStatsController(IGitStatisticService statisticService)
         {
-            this.cdService = new GitStatisticService();
+            this.statisticService = statisticService;
         }
 
         public string Cd(_Command command)
         {
-            return cdService.Execute(command);
+            return statisticService.Execute(command);
         }
     }
 }
