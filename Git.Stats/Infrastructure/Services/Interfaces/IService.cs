@@ -1,4 +1,4 @@
-﻿namespace Git.Stats.Infrastructure.Services.Implementations
+﻿namespace Git.Stats.Infrastructure.Services.Interfaces
 {
     public interface IService
     {

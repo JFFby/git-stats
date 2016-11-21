@@ -2,7 +2,7 @@
 
 namespace Git.Stats.Infrastructure.Services.Interfaces
 {
-    public interface IStatisticStorage
+    public interface IStatisticStorage : IService
     {
         void Save(Statistic statistic);
 

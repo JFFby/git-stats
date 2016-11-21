@@ -2,6 +2,7 @@
 using Command.Infrastructure;
 using Git.Stats.Infrastructure;
 using Git.Stats.Infrastructure.Services.Implementations;
+using Git.Stats.Infrastructure.Services.Interfaces;
 
 namespace Git.Stats.Container
 {

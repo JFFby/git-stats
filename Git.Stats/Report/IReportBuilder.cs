@@ -1,4 +1,5 @@
 ﻿using Git.Stats.Infrastructure.Services.Implementations;
+using Git.Stats.Infrastructure.Services.Interfaces;
 using Git.Stats.Models.Statistics;
 
 namespace Git.Stats.Report
