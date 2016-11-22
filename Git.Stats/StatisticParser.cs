@@ -29,24 +29,7 @@ namespace Git.Stats
 
         private Statistic CalculateStatistics()
         {
-            var authors = commits.Select(x => x.Author).Distinct();
-
-            return new Statistic
-            {
-                TotalDeletions = commits.Sum(x => x.Deletions),
-                TotalInserions = commits.Sum(x => x.Insertions),
-                Commits = commits,
-                AuhorStatistic = GetAuthorsStatistic()
-            };
-        }
-
-        private IList<AuthorStatistic> GetAuthorsStatistic()
-        {
-            var commitsGruppedByAuthors = commits.GroupBy(x => x.Author);
-            return commitsGruppedByAuthors
-                .Select(x => new AuthorStatistic(
-                    x.Key, x.Count(), x.Sum(s => s.Insertions), x.Sum(s => s.Deletions)))
-                .ToList();
+            return new StatisticCalculationHelper(commits).Calculte();
         }
 
         private void ParseCommits()

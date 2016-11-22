@@ -9,6 +9,8 @@ namespace Git.Stats.Infrastructure.Services.Implementations
 {
     public sealed class BetweenService : IBetweenService
     {
+        public const string WrongArguments = "wrong arguments", RepoNotSelected = "choose git repo first of all";
+
         private readonly IReportBuilder reportBuilder;
         private readonly IStatisticStorage statisticStorage;
 
@@ -29,8 +31,13 @@ namespace Git.Stats.Infrastructure.Services.Implementations
             if (searchResult.ErrorMessage != null)
                 return searchResult.ErrorMessage;
 
+            var recalculatedStatistic = RecalculateStatistic(searchResult.Commtis);
+            return reportBuilder.BuildReport(recalculatedStatistic);
+        }
 
-            return string.Empty;
+        private Statistic RecalculateStatistic(IList<Commit> commits)
+        {
+            return new StatisticCalculationHelper(commits).Calculte();
         }
 
         private SearchResult FindCommits(string[] commits, Statistic statistic)
@@ -83,10 +90,10 @@ namespace Git.Stats.Infrastructure.Services.Implementations
         {
             if (arguments.Length != 2)
             {
-                return "wrong arguments";
+                return WrongArguments;
             }
 
-            return statistic == null ? "choose git repo first of all" : null;
+            return statistic == null ?  RepoNotSelected : null;
         }
     }
 }

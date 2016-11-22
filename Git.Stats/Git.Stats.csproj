@@ -68,6 +68,7 @@
     <Compile Include="RegexHelper.cs" />
     <Compile Include="Report\IReportBuilder.cs" />
     <Compile Include="Report\PlaiTextReportBuilder.cs" />
+    <Compile Include="StatisticCalculationHelper.cs" />
     <Compile Include="StatisticParser.cs" />
   </ItemGroup>
   <ItemGroup>
