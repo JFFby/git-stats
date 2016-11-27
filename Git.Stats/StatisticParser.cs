@@ -39,8 +39,7 @@ namespace Git.Stats
             {
                 if (results[i].StartsWith(CommitTemplate))
                 {
-                    AddCommit(i);
-                    step = 5;
+                    step = AddCommit(i); ;
                 }
                 else
                 {
@@ -49,10 +48,10 @@ namespace Git.Stats
             }
         }
 
-        private void AddCommit(int i)
+        private int AddCommit(int i)
         {
             if(results[i + 1].StartsWith(MergeTempalte)) 
-                return;
+                return 1;
 
             var commitname = regexHelper.GetName(results[i]);
             var author = regexHelper.GetAuthor(results[i + 1]);
@@ -62,10 +61,21 @@ namespace Git.Stats
                 throw new EventSourceException();
             }
 
-            var insertions = regexHelper.GetInsertions(results[i + 4]);
-            var deletions = regexHelper.GetDeletions(results[i + 4]);
+            var paddingForLinesStatistic = GetLineStatisticPadding(i);
+
+            var insertions = regexHelper.GetInsertions(results[i + paddingForLinesStatistic]);
+            var deletions = regexHelper.GetDeletions(results[i + paddingForLinesStatistic]);
             var commit = new Commit(commitname, author, insertions, deletions);
             commits.Add(commit);
+            return paddingForLinesStatistic + 1;
+        }
+
+        private int GetLineStatisticPadding(int i)
+        {
+            var defaultPadding = 3;
+            return regexHelper.IsContainsLineStatistic(results[i + defaultPadding])
+                ? defaultPadding
+                : defaultPadding + 1;
         }
     }
 }

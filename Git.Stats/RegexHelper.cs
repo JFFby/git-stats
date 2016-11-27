@@ -56,5 +56,10 @@ namespace Git.Stats
                 ? int.Parse(deletionsRegex.Match(input).Groups["deletions"].Value)
                 : default(int);
         }
+
+        internal bool IsContainsLineStatistic(string input)
+        {
+            return insertionsRegex.IsMatch(input) || deletionsRegex.IsMatch(input);
+        }
     }
 }
