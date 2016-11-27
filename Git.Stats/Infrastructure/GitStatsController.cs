@@ -8,11 +8,16 @@ namespace Git.Stats.Infrastructure
     {
         private readonly IGitStatisticService statisticService;
         private readonly IBetweenService betweenService;
+        private readonly IMergeService mergeService;
 
-        public GitStatsController(IGitStatisticService statisticService, IBetweenService betweenService)
+        public GitStatsController(
+            IGitStatisticService statisticService, 
+            IBetweenService betweenService, 
+            IMergeService mergeService)
         {
             this.statisticService = statisticService;
             this.betweenService = betweenService;
+            this.mergeService = mergeService;
         }
 
         public string Cd(_Command command)
@@ -23,6 +28,11 @@ namespace Git.Stats.Infrastructure
         public string Between(_Command command)
         {
             return betweenService.GetStatisticBetween(command);
+        }
+
+        public string Merge(_Command command)
+        {
+            return mergeService.Merge(command);
         }
     }
 }

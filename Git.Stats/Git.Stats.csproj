@@ -52,12 +52,15 @@
     <Compile Include="Infrastructure\GitStatsController.cs" />
     <Compile Include="Infrastructure\Services\Implementations\BetweenService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\GitStatisticService.cs" />
+    <Compile Include="Infrastructure\Services\Implementations\MergeService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IBetweenService.cs" />
+    <Compile Include="Infrastructure\Services\Interfaces\IMergeService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\StatisticStorage.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IGitStatisticService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IStatisticStorage.cs" />
     <Compile Include="Container\Ioc.cs" />
+    <Compile Include="Infrastructure\Services\Models\MergeAuthorsModel.cs" />
     <Compile Include="Infrastructure\Services\Models\SearchResult.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Commit.cs" />

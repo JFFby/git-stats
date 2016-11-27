@@ -25,3 +25,15 @@ for example:
 result:
 
 ![](http://content.screencast.com/users/JFFby/folders/Snagit/media/91eabc15-be18-4cb6-911e-810cee36e259/11.27.2016-14.24.png)
+
+You can merge user's statistic with 'merge' command
+
+	merge [mainAuthorId] [duplicatedAuthorIds]
+
+for example:
+	
+	merge 1 2
+
+result:
+
+![](http://content.screencast.com/users/JFFby/folders/Snagit/media/e3333bb2-c3b1-45c2-b9b9-47712ca3f748/11.27.2016-15.46.png)

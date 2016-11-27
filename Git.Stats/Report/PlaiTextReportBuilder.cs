@@ -35,7 +35,7 @@ namespace Git.Stats.Report
             {
                 var statsLine = 
                     GetStatsLine(authorStatistic.Commits, authorStatistic.TotalInsertions, authorStatistic.TotalDeletions);
-                report.Append($"Author: {authorStatistic.Author.Name}:{nl}" +
+                report.Append($"Author {authorStatistic.Author.Id}: {authorStatistic.Author.Name}:{nl}" +
                               $"{tab}{statsLine}{nl}");
                 report.Append(nl);
             }

@@ -1,5 +1,4 @@
-﻿using Git.Stats.Infrastructure.Services.Implementations;
-using _Command = Command.Infrastructure.Models.Command;
+﻿using _Command = Command.Infrastructure.Models.Command;
 
 namespace Git.Stats.Infrastructure.Services.Interfaces
 {

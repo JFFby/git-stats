@@ -2,8 +2,8 @@
 
 namespace Git.Stats.Infrastructure.Services.Interfaces
 {
-    public interface IBetweenService : IService
+    public interface IMergeService : IService
     {
-        string GetStatisticBetween(_Command command);
+        string Merge(_Command command);
     }
 }
