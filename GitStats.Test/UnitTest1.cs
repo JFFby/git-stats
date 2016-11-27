@@ -49,21 +49,69 @@ namespace GitStats.Test
 
             var result = betweenService.GetStatisticBetween(command);
 
-            Assert.AreEqual(BetweenService.WrongArguments, result);
+            Assert.AreEqual(BetweenService.RepoNotSelected, result);
         }
 
         [TestMethod]
         public void ShouldFindCommitsBetweenTwoSpecified()
         {
-            statisticStorage.Setup(x => x.Get()).Returns(() => null);
-            var command = new _Command("b", string.Join(" ", fixture.CreateMany<string>(2)));
-            var commits = fixture.CreateMany<Commit>(10).ToList();
-            var first = commits[7];
-            var second = commits[3];
+            var statistic = SetupStatistic();
+            var first = statistic.Commits[7];
+            var second = statistic.Commits[3];
+            var command = new _Command("b", string.Join(" ", second.Name, first.Name));
 
             var result = betweenService.GetStatisticBetween(command);
 
-            Assert.AreEqual(BetweenService.WrongArguments, result);
+            reportBuilder.Verify(x => x.BuildReport(It.Is<Statistic>(s => s.Commits.Count == 5)));
+        }
+
+        [TestMethod]
+        public void ShouldFindCommitsBetweenTwoSpecified_2()
+        {
+            var statistic = SetupStatistic();
+            var first = statistic.Commits[3];
+            var second = statistic.Commits[3];
+            var command = new _Command("b", string.Join(" ", second.Name, first.Name));
+
+            var result = betweenService.GetStatisticBetween(command);
+
+            reportBuilder.Verify(x => x.BuildReport(It.Is<Statistic>(s => s.Commits.Count == 1)));
+        }
+
+        [TestMethod]
+        public void ShouldFindCommitsBetweenTwoSpecified_3()
+        {
+            var statistic = SetupStatistic();
+            var first = statistic.Commits[3];
+            var second = statistic.Commits[7];
+            var command = new _Command("b", string.Join(" ", second.Name, first.Name));
+
+            var result = betweenService.GetStatisticBetween(command);
+
+            reportBuilder.Verify(x => x.BuildReport(It.Is<Statistic>(s => s.Commits.Count == 5)));
+        }
+
+        [TestMethod]
+        public void ShouldFindCommitsBetweenTwoSpecified_4()
+        {
+            var statistic = SetupStatistic();
+            var first = statistic.Commits[0];
+            var second = statistic.Commits[9];
+            var command = new _Command("b", string.Join(" ", second.Name, first.Name));
+
+            var result = betweenService.GetStatisticBetween(command);
+
+            reportBuilder.Verify(x => x.BuildReport(It.Is<Statistic>(s => s.Commits.Count == 10)));
+        }
+
+        private Statistic SetupStatistic()
+        {
+            var commits = fixture.CreateMany<Commit>(10).ToList();
+            var statistic = fixture.Build<Statistic>()
+                .With(x => x.Commits, commits)
+                .Create();
+            statisticStorage.Setup(x => x.Get()).Returns(() => statistic);
+            return statistic;
         }
     }
 }

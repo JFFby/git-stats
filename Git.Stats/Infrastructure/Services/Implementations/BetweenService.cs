@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Git.Stats.Infrastructure.Services.Interfaces;
 using Git.Stats.Infrastructure.Services.Models;
 using Git.Stats.Models;
@@ -22,7 +23,7 @@ namespace Git.Stats.Infrastructure.Services.Implementations
 
         public string GetStatisticBetween(Command.Infrastructure.Models.Command command)
         {
-            var commits = command.ExecutedCommand.Split(' ');
+            var commits = command.Args.Split(' ');
             var statistic = statisticStorage.Get();
             if (Check(commits, statistic) != null)
                 return Check(commits, statistic);
@@ -42,9 +43,9 @@ namespace Git.Stats.Infrastructure.Services.Implementations
 
         private SearchResult FindCommits(string[] commits, Statistic statistic)
         {
-            var suitableCommits = new List<Commit>();
+            var suitableCommits = new HashSet<Commit>();
             var boundCommitsCount = 0;
-            for (int i = statistic.Commits.Count - 1; i <= 0; i--)
+            for (int i = statistic.Commits.Count - 1; i >= 0; i--)
             {
                 var commit = statistic.Commits[i];
                 foreach (var cn in commits)
@@ -58,7 +59,7 @@ namespace Git.Stats.Infrastructure.Services.Implementations
                         }
                     }
 
-                    if (boundCommitsCount == 1)
+                    if (boundCommitsCount == 1 && !suitableCommits.Contains(commit))
                     {
                         suitableCommits.Add(commit);
                     }
@@ -68,7 +69,7 @@ namespace Git.Stats.Infrastructure.Services.Implementations
             if (CheckBounds(boundCommitsCount) != null)
                 return SearchResult.Error(CheckBounds(boundCommitsCount));
 
-            return SearchResult.Success(suitableCommits);
+            return SearchResult.Success(suitableCommits.ToList());
         }
 
         private string CheckBounds(int boundsCount)

@@ -17,5 +17,16 @@
         public int Insertions { get; }
 
         public int Deletions { get; }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var commit = obj as Commit;
+            return commit != null && commit.GetHashCode() == GetHashCode();
+        }
     }
 }
