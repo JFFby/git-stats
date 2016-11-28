@@ -16,7 +16,7 @@ namespace Git.Stats
         public RegexHelper()
         {
             this.commitNameRegex = new Regex(@"commit (\w+)", options);
-            authorRegex = new Regex(@"Author: (?<name>[\w\s]+)\s<(?<email>.+)>", options);
+            authorRegex = new Regex(@"Author: (?<name>.+)\s<(?<email>.+)>", options);
             insertionsRegex = new Regex(@"(?<insertions>\d+) insertions?", options);
             deletionsRegex = new Regex(@"(?<deletions>\d+) deletions?", options);
         }
