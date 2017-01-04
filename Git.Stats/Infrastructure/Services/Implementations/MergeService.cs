@@ -34,7 +34,7 @@ namespace Git.Stats.Infrastructure.Services.Implementations
             var commits = statistic.Commits
                 .Select(commit =>
                     mergeModel.Duplicates.Contains(commit.Author.Id)
-                        ? new Commit(commit.Name, mergeModel.MainAuthor, commit.Insertions, commit.Deletions)
+                        ? new Commit(commit.Name, mergeModel.MainAuthor, commit.Insertions, commit.Deletions, commit.Date)
                         : commit).ToList();
 
             var newStatistic = new StatisticCalculationHelper(commits).Calculte();

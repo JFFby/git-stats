@@ -1,7 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
-using System.Linq;
 using Git.Stats.Models;
 using Git.Stats.Models.Statistics;
 
@@ -61,11 +60,12 @@ namespace Git.Stats
                 throw new EventSourceException();
             }
 
+            var date = regexHelper.GetDate(results[i + 2]);
             var paddingForLinesStatistic = GetLineStatisticPadding(i);
 
             var insertions = regexHelper.GetInsertions(results[i + paddingForLinesStatistic]);
             var deletions = regexHelper.GetDeletions(results[i + paddingForLinesStatistic]);
-            var commit = new Commit(commitname, author, insertions, deletions);
+            var commit = new Commit(commitname, author, insertions, deletions, date);
             commits.Add(commit);
             return paddingForLinesStatistic + 1;
         }

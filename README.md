@@ -37,3 +37,13 @@ for example:
 result:
 
 ![](http://content.screencast.com/users/JFFby/folders/Snagit/media/e3333bb2-c3b1-45c2-b9b9-47712ca3f748/11.27.2016-15.46.png)
+
+You can specify time frame
+
+	datedif [from date] [to date]
+	
+for example:
+
+	datedif 19/11/2016 20/11/2016
+	
+![](http://content.screencast.com/users/JFFby/folders/Snagit/media/c1df3a6d-4e31-4efd-a211-339d302dc3f7/01.04.2017-22.03.png)

@@ -51,9 +51,11 @@
     <Compile Include="Infrastructure\GetStatsCommandHandler.cs" />
     <Compile Include="Infrastructure\GitStatsController.cs" />
     <Compile Include="Infrastructure\Services\Implementations\BetweenService.cs" />
+    <Compile Include="Infrastructure\Services\Implementations\DateDifService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\GitStatisticService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\MergeService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IBetweenService.cs" />
+    <Compile Include="Infrastructure\Services\Interfaces\IDateDifService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IMergeService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\StatisticStorage.cs" />
@@ -69,6 +71,8 @@
     <Compile Include="PowerShellExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexHelper.cs" />
+    <Compile Include="Report\DateDifReportBuilder.cs" />
+    <Compile Include="Report\IDateDifReportBuilder.cs" />
     <Compile Include="Report\IReportBuilder.cs" />
     <Compile Include="Report\PlaiTextReportBuilder.cs" />
     <Compile Include="StatisticCalculationHelper.cs" />

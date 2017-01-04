@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Git.Stats.Models;
 
 namespace Git.Stats
@@ -12,6 +13,7 @@ namespace Git.Stats
         private readonly Regex authorRegex;
         private readonly Regex insertionsRegex;
         private readonly Regex deletionsRegex;
+        private readonly Regex dateRegex;
 
         public RegexHelper()
         {
@@ -19,9 +21,24 @@ namespace Git.Stats
             authorRegex = new Regex(@"Author: (?<name>.+)\s<(?<email>.+)>", options);
             insertionsRegex = new Regex(@"(?<insertions>\d+) insertions?", options);
             deletionsRegex = new Regex(@"(?<deletions>\d+) deletions?", options);
+            dateRegex = new Regex(@"Date:\s+(?<dayOfWeek>\w+)\s(?<month>\w+)\s(?<day>\d+)\s(?<time>\d+:\d+:\d+)\s(?<year>\d+)", options);
         }
 
+        internal DateTime GetDate(string input)
+        {
+            if (dateRegex.IsMatch(input))
+            {
+                var result = dateRegex.Match(input);
+                var month = result.Groups["month"].Value;
+                var year = result.Groups["year"].Value;
+                var day = result.Groups["day"].Value;
+                var time = result.Groups["time"].Value;
 
+                return DateTime.Parse($"{month} {day} {year} {time}");
+            }
+
+            throw new ArgumentException();
+        }
 
         internal string GetName(string input)
         {

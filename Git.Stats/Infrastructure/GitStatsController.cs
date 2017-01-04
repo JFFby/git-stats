@@ -9,15 +9,18 @@ namespace Git.Stats.Infrastructure
         private readonly IGitStatisticService statisticService;
         private readonly IBetweenService betweenService;
         private readonly IMergeService mergeService;
+        private readonly IDateDifService dateDifService;
 
         public GitStatsController(
             IGitStatisticService statisticService, 
             IBetweenService betweenService, 
-            IMergeService mergeService)
+            IMergeService mergeService, 
+            IDateDifService dateDifService)
         {
             this.statisticService = statisticService;
             this.betweenService = betweenService;
             this.mergeService = mergeService;
+            this.dateDifService = dateDifService;
         }
 
         public string Cd(_Command command)
@@ -33,6 +36,11 @@ namespace Git.Stats.Infrastructure
         public string Merge(_Command command)
         {
             return mergeService.Merge(command);
+        }
+
+        public string DateDif(_Command command)
+        {
+            return dateDifService.GetDateDifStatistic(command);
         }
     }
 }
