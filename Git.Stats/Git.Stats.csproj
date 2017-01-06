@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,9 +50,14 @@
   <ItemGroup>
     <Compile Include="Infrastructure\GetStatsCommandHandler.cs" />
     <Compile Include="Infrastructure\GitStatsController.cs" />
+    <Compile Include="Infrastructure\Services\Arguments\GroupingArgs.cs" />
     <Compile Include="Infrastructure\Services\Implementations\BetweenService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\DateDifService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\GitStatisticService.cs" />
+    <Compile Include="Infrastructure\Services\Implementations\GroupingFactory.cs" />
+    <Compile Include="Infrastructure\Services\Implementations\GroupingService.cs" />
+    <Compile Include="Infrastructure\Services\Interfaces\IGroupingFactory.cs" />
+    <Compile Include="Infrastructure\Services\Interfaces\IGroupingService.cs" />
     <Compile Include="Infrastructure\Services\Implementations\MergeService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IBetweenService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IDateDifService.cs" />
@@ -62,11 +67,14 @@
     <Compile Include="Infrastructure\Services\Interfaces\IGitStatisticService.cs" />
     <Compile Include="Infrastructure\Services\Interfaces\IStatisticStorage.cs" />
     <Compile Include="Container\Ioc.cs" />
+    <Compile Include="Infrastructure\Services\Implementations\WeekDatesService.cs" />
+    <Compile Include="Infrastructure\Services\Interfaces\IWeekDatesService.cs" />
     <Compile Include="Infrastructure\Services\Models\MergeAuthorsModel.cs" />
     <Compile Include="Infrastructure\Services\Models\SearchResult.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Commit.cs" />
     <Compile Include="Models\Statistics\AuthorStatistic.cs" />
+    <Compile Include="Models\Statistics\GroupedStatistic.cs" />
     <Compile Include="Models\Statistics\Statistic.cs" />
     <Compile Include="PowerShellExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

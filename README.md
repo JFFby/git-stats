@@ -47,3 +47,9 @@ for example:
 	datedif 19/11/2016 20/11/2016
 	
 ![](http://content.screencast.com/users/JFFby/folders/Snagit/media/c1df3a6d-4e31-4efd-a211-339d302dc3f7/01.04.2017-22.03.png)
+
+Also you can group statistics by weeks
+
+	datedif [from] [to] weekly
+
+![](http://content.screencast.com/users/JFFby/folders/Snagit/media/4b73c189-b41d-4b94-af62-77fbcf640dae/01.06.2017-18.54.png)
